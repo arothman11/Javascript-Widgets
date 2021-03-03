@@ -1,0 +1,96 @@
+<DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Module5-Individual">
+        <title>CSE 330 - Module 5 JS Calculator</title>
+    </head>
+
+    <body>
+
+        <form name ="input">
+            
+            Enter First Number Here: <input type="text" name="num1" id="num1"/> <br><br>
+            Enter Second Number Here: <input type="text" name="num2" id="num2"/> <br><br>
+
+            Select an Operation:
+            <input type="radio" name="op" value="addition" id="addition">ADD (+)
+            <input type="radio" name="op" value="subtraction" id="subtraction">SUBTRACT (-)
+            <input type="radio" name="op" value="multiplication" id="multiplication">MULTIPLY (x)
+            <input type="radio" name="op" value="division" id="division">DIVIDE (/)
+
+            <br><br>
+
+            Answer: <div id="answer"></div>
+
+        </form>
+
+        <script>
+            function add(){
+                let n1 = Number(document.getElementById("num1").value);
+                let n2 = Number(document.getElementById("num2").value);
+                answer = (n1 + n2);
+                document.getElementById("answer").innerHTML = answer;
+            }
+
+            function subtract(){
+                let n1 = Number(document.getElementById("num1").value);
+                let n2 = Number(document.getElementById("num2").value);
+                answer = (n1 - n2);
+                document.getElementById("answer").innerHTML = answer;
+            }
+
+            function multiply(){
+                let n1 = Number(document.getElementById("num1").value);
+                let n2 = Number(document.getElementById("num2").value);
+                answer = (n1 * n2);
+                document.getElementById("answer").innerHTML = answer;
+            }
+
+            function divide(){
+                let n1 = Number(document.getElementById("num1").value);
+                let n2 = Number(document.getElementById("num2").value);
+                if (n2!=0){
+                    answer = (n1 / n2);
+                    document.getElementById("answer").innerHTML = answer;
+                }
+                else if (n2==0){
+                    document.getElementById("answer").innerHTML = "Error! Cannot divide by 0.";
+                }
+                
+            }
+
+            function changer(){
+                // http://jsfiddle.net/SHcng/
+                var op_radio_pointers = document.getElementsByName("op");
+                var which_op = null;
+                for(var i=0; i<op_radio_pointers.length; i++){
+                    if(op_radio_pointers[i].checked){
+                        which_op = op_radio_pointers[i].value;             
+                    }    
+                }
+                if (which_op == "addition"){
+                    add();
+                }
+                if (which_op == "subtraction"){
+                    subtract();
+                }
+                if (which_op == "multiplication"){
+                    multiply();
+                }
+                if (which_op == "division"){
+                    divide();
+                }
+            }
+            document.getElementById("addition").addEventListener("click", add, false);
+            document.getElementById("subtraction").addEventListener("click", subtract, false);
+            document.getElementById("multiplication").addEventListener("click", multiply, false);
+            document.getElementById("division").addEventListener("click", divide, false);
+            document.getElementById("num1").addEventListener("keyup", changer, false);
+            document.getElementById("num2").addEventListener("keyup", changer, false);
+
+        
+        </script>
+
+    </body>
+</html>
